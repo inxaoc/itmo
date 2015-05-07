@@ -16,7 +16,7 @@ public class Fridge {
 	 * @return
 	 */
 	public Double checkFrozenCapacity(Meat meat){
-		if(meat.weight<frozenCapacity){
+		if(meat.weight<=frozenCapacity){
 			return meat.weight;
 		} else {
 			return null;
@@ -31,7 +31,7 @@ public class Fridge {
 	 * @return
 	 */
 	public Integer checkBottlesCapacity(Milk milk){
-		if(milk.bottles<bottlesCapacity){
+		if(milk.bottles<=bottlesCapacity){
 			return milk.bottles;
 		} else {
 			return null;
@@ -47,7 +47,7 @@ public class Fridge {
 	 * @return
 	 */
 	public Double checkShelfCapacity(Fruit fruit, Cheese cheese){
-		if((fruit.totalweight+(cheese.weight/1000))<shelfCapacity){
+		if((fruit.totalweight+(cheese.weight/1000))<=shelfCapacity){
 			return fruit.totalweight+cheese.weight;
 		} else {
 			return null;
