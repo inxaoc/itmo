@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Сколько влезет в холодильник?</title>
+
+<style>
+body {
+	color:#888;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 18pt;
+}
+
+.content {
+	width:700px;
+	margin:10px auto;
+}
+
+h1 {
+	padding:10px;
+	margin-bottom: 0px;
+}
+
+h6 {
+	margin:0;
+	text-align: center;
+}
+
+h6 a {
+	font-style:italic;
+	font-weight: normal;
+	font-size: 15px;
+}
+
+.task {
+	padding:10px;
+}
+
+form {
+	padding:20px;
+	width:100%;
+	border:1px solid #ddd;
+}
+
+select {
+	font-size: 20pt;
+}
+
+input[type="text"] {
+	padding:10px;
+	font-size: 18pt;
+	width:50px;
+}
+
+#check {
+	width:300px;
+	font-size: 20px;
+	height:60px;
+	margin:10px auto;
+}
+
+.success ul li {
+	list-style: none;
+}
+
+.holod {
+	text-decoration: underline;
+	font-style: italic;
+}
+
+.well {
+	color: #0f0;
+	background: url(images/well.png) no-repeat 5px;
+	padding-left: 30px;
+}
+
+.bad {
+	color: #f00;
+	background: url(images/fail.png) no-repeat 5px;
+	padding-left: 30px;
+}
+
+</style>
+
+<script src="/js/jquery-2.1.0.min.js"></script>
+<script>
+	$(function() {
+		$('#check').click(function() {
+			var fridge = $('#fridge').val();
+			var meat_weight = $('#meat_weight').val();
+			var fruit_type = $('#fruit_type').val();
+			var fruit_amout = $('#fruit_amout').val();
+			var milk_amount = $('#milk_amount').val();
+			var cheese_gram = $('#cheese_gram').val();
+			var string = "fridge="+fridge+"&meat_weight="+meat_weight+"&fruit_type="+fruit_type+
+					"&fruit_amout="+fruit_amout+"&milk_amount="+milk_amount+"&cheese_gram="+cheese_gram;
+			$('#result').load("/goFridge?" + string);
+		});
+	});
+</script>
+</head>
+<body>
+
+<div class="content">
+<h1>Сколько влезет в холодильник?</h1>
+<h6><a href="https://github.com/inxaoc/itmo/blob/master/2015_spring_classworks/src/edu/itmo/pbks/_015_spring_classworksServlet.java">Посмотрите код сервлета с комментариями</a>.</h6>
+<div class="task">Выберите продукты, которые вы хотите купить и модель холодильника и проверьте влезут ли выбранные вами продукты в выбранный холодильник.</div>
+
+<form>
+	Выберите холодильник:
+	<select id="fridge">
+		<option value="">не выбран</option>
+		<option value="holod">Холодильник Деда Мороза 2025</option>
+		<option value="cow">Холодильник Буренки 33</option>
+		<option value="vegan">Холодильник "Веган 1"</option>
+	</select>
+	
+	<p>Сколько мяса вы хотите купить? <input type="text" id="meat_weight"> кг.</p>
+	
+	<p>Сколько шт. 
+
+<select id="fruit_type">
+		<option value=""></option>
+		<option value="яблоко">Яблоко</option>
+		<option value="груша">Груша</option>
+		<option value="дыня">Дыня</option>
+	</select>
+ вы хотите купить? <input type="text" id="fruit_amout"> шт.</p>
+	
+	<p>Сколько бутылок молока вы хотите купить? <input type="text" id="milk_amount"> шт.</p>
+	
+	<p>Сколько гр. сыра вы хотите купить? <input type="text" id="cheese_gram"> гр.</p>
+	
+</form>
+
+<button id="check">Проверить!</button>
+
+<p>Результат:</p>
+
+<div id="result"><i>после нажатия на кнопку, появится тут</i></div>
+
+</div>
+</body>
+</html>
