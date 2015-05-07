@@ -18,12 +18,15 @@ public class CapacityServlet extends HttpServlet {
 		resp.setContentType("text/plain");
 		resp.setCharacterEncoding("UTF-8");
 
+		//если появится хоть одна ошибка, то выполнение кода прервется и будут выведены сообщения об ошибке
 		boolean errors = false;
 
+		//создаем объекты всех трех холодильников
 		Fridge[] fridges = createFridges();
 
 		String fridgeStr = req.getParameter("fridge");
 		Fridge fridge = null;
+		//ищем холодильник, который выбрал пользователь в массиве созданных нами
 		for (int i = 0; i < fridges.length; i++) {
 			if (fridges[i].model.equals(fridgeStr)) {
 				fridge = fridges[i];
@@ -31,6 +34,7 @@ public class CapacityServlet extends HttpServlet {
 			}
 		}
 
+		//проверяем что холодильник выбран
 		if (fridge == null) {
 			resp.getWriter().println(
 					"<div class=\"bad\">Не выбран холодильник.</div>");
@@ -39,6 +43,8 @@ public class CapacityServlet extends HttpServlet {
 
 		String meatWeight = req.getParameter("meat_weight");
 		Meat meat = new Meat();
+		
+		//если пользователь не заполнил значение, то будет выведена ошибка
 		if (meatWeight.isEmpty()) {
 			resp.getWriter().println(
 					"<div class=\"bad\">Задайте количество фруктов.</div>");
@@ -65,6 +71,7 @@ public class CapacityServlet extends HttpServlet {
 			Integer fruitA = Integer.parseInt(fruitAmout);
 			fruit.type = fruitType;
 			fruit.amount = fruitA;
+			//высчитываем итоговый вес фруктов
 			fruit.calculateWeight();
 		}
 
@@ -90,6 +97,8 @@ public class CapacityServlet extends HttpServlet {
 			Double cheeseG = Double.parseDouble(cheeseGram);
 			chees.weight = cheeseG;
 		}
+		
+		//если есть хоть одна ошибка выполнение кода прекратится
 		if (errors) {
 			return;
 		}
@@ -106,6 +115,8 @@ public class CapacityServlet extends HttpServlet {
 						+ "гр.</div>");
 
 		resp.getWriter().println("<ul>");
+
+		//проверяем вместимость молока в холодильник 
 		Integer bot = fridge.checkBottlesCapacity(milk);
 		if (bot == null) {
 			resp.getWriter()
@@ -118,6 +129,7 @@ public class CapacityServlet extends HttpServlet {
 					"<li class=\"well\">Бутылки в холодильник влезут.</li>");
 		}
 
+		//проверяем вместимость мяса в морозильник
 		Double frozen = fridge.checkFrozenCapacity(meat);
 		if (frozen == null) {
 			resp.getWriter()
@@ -129,6 +141,8 @@ public class CapacityServlet extends HttpServlet {
 					"<li class=\"well\">Мясо в холодильник влезет.</li>");
 		}
 
+		//проверяем вместимость полки холодильника
+		//вместимость складывается из фруктов и сыра
 		Double shelf = fridge.checkShelfCapacity(fruit, chees);
 		if (shelf == null) {
 			resp.getWriter()
@@ -145,6 +159,10 @@ public class CapacityServlet extends HttpServlet {
 		resp.getWriter().println("</div>");
 	}
 
+	/**
+	 * Создает три холодильника и их характеристики
+	 * @return
+	 */
 	private Fridge[] createFridges() {
 		Fridge[] fridges = new Fridge[3];
 
