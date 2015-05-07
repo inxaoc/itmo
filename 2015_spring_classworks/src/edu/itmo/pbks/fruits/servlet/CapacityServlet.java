@@ -183,8 +183,8 @@ public class CapacityServlet extends HttpServlet {
 		fridges[1] = cow;
 
 		Fridge vegan = new Fridge();
-		vegan.model = "cow";
-		vegan.name = "Холодильник Буренки 33";
+		vegan.model = "vegan";
+		vegan.name = "Холодильник \"Веган 1\"";
 		vegan.bottlesCapacity = 5;
 		vegan.frozenCapacity = 5;
 		vegan.shelfCapacity = 20;
