@@ -33,6 +33,8 @@ public class SimpleReadFileServlet extends HttpServlet {
 
 		try {
 			URL url = new URL("http://localhost:8888/io/districts.csv");
+			//Надо заменить URL на ваш при загрузке на AppEngine, например 
+			//URL url = new URL("http://examples-web.appspot.com//io/districts.csv");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					url.openStream()));
 			String line;
@@ -57,6 +59,8 @@ public class SimpleReadFileServlet extends HttpServlet {
 
 			try {
 				URL url = new URL("http://localhost:8888/io/plans.csv");
+				//Надо заменить URL на ваш при загрузке на AppEngine, например 
+				//URL url = new URL("http://examples-web.appspot.com//io/plans.csv");
 				BufferedReader reader = new BufferedReader(
 						new InputStreamReader(url.openStream()));
 
