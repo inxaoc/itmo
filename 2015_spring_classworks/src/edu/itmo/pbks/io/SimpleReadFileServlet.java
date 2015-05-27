@@ -103,6 +103,7 @@ public class SimpleReadFileServlet extends HttpServlet {
 
 			if (!plans.isEmpty()) {
 
+				//с помощью специального метода получаем название района по его коду ОКАТО
 				resp.getWriter()
 						.println(
 								"Следующие проекты планировок запланированы для района <b>"
@@ -111,6 +112,7 @@ public class SimpleReadFileServlet extends HttpServlet {
 				resp.getWriter().println("<ul>");
 
 				for (Plan plan : plans) {
+					//выводим только те планировки,и в которых код ОКАТО района совпадает с искомым
 					if (okato.equals(plan.getDistrict().getOkato())) {
 						resp.getWriter().println(
 								"<li>" + plan.getAddress() + "</li>");
