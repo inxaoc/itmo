@@ -16,9 +16,11 @@ public class DistrictServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		
 		try {
-			URL url = new URL("http://localhost:8888/io/districts.csv");
+//			URL url = new URL("http://localhost:8888/io/districts.csv");
+			//Надо заменить URL на ваш при загрузке на AppEngine, например 
+			URL url = new URL("http://examples-web.appspot.com/io/districts.csv");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					url.openStream()));
+					url.openStream(),"UTF-8"));
 			String line;
 
 			resp.getWriter().println("<h1>Список всех районов</h1>");

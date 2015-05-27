@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import au.com.bytecode.opencsv.CSVParser;
 import au.com.bytecode.opencsv.CSVReader;
 
 public class SimpleReadFileServlet extends HttpServlet {
@@ -32,11 +31,11 @@ public class SimpleReadFileServlet extends HttpServlet {
 		ArrayList<Plan> plans = new ArrayList<Plan>();
 
 		try {
-			URL url = new URL("http://localhost:8888/io/districts.csv");
+//			URL url = new URL("http://localhost:8888/io/districts.csv");
 			//Надо заменить URL на ваш при загрузке на AppEngine, например 
-			//URL url = new URL("http://examples-web.appspot.com//io/districts.csv");
+			URL url = new URL("http://examples-web.appspot.com/io/districts.csv");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					url.openStream()));
+					url.openStream(),"UTF-8"));
 			String line;
 
 			for (int i = 0; (line = reader.readLine()) != null; i++) {
@@ -58,11 +57,11 @@ public class SimpleReadFileServlet extends HttpServlet {
 		if (!districts.isEmpty()) {
 
 			try {
-				URL url = new URL("http://localhost:8888/io/plans.csv");
+//				URL url = new URL("http://localhost:8888/io/plans.csv");
 				//Надо заменить URL на ваш при загрузке на AppEngine, например 
-				//URL url = new URL("http://examples-web.appspot.com//io/plans.csv");
+				URL url = new URL("http://examples-web.appspot.com/io/plans.csv");
 				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(url.openStream()));
+						new InputStreamReader(url.openStream(),"UTF-8"));
 
 				CSVReader csv = new CSVReader(reader);
 				List<String[]> rows = csv.readAll();
