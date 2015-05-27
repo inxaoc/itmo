@@ -9,6 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Сервлет отображает таблицу районов
+ * 
+ * @author inxaoc
+ *
+ */
 public class DistrictServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
@@ -16,9 +22,9 @@ public class DistrictServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		
 		try {
-//			URL url = new URL("http://localhost:8888/io/districts.csv");
+			URL url = new URL("http://localhost:8888/io/districts.csv");
 			//Надо заменить URL на ваш при загрузке на AppEngine, например 
-			URL url = new URL("http://examples-web.appspot.com/io/districts.csv");
+//			URL url = new URL("http://examples-web.appspot.com/io/districts.csv");
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					url.openStream(),"UTF-8"));
 			String line;
